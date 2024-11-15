@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trafix - Rewards & Community Engagement</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@3.2.3/dist/leaflet-routing-machine.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        #content {
+            padding: 20px;
+        }
+        .engagement-list, .social-buttons, .privacy-consent {
+            list-style-type: none;
+            padding: 0;
+        }
+        .engagement-list li, .social-buttons li {
+            margin-bottom: 10px;
+        }
+        .btn {
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            display: inline-block;
+        }
+        .btn:hover {
+            background-color: #218838;
+        }
+        .privacy-consent {
+            display: none;
+            padding: 10px;
+            border: 1px solid #ccc;
+            background-color: #f8f9fa;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="content">
+    <!-- Section: Join a Challenge -->
+    <h2>Join a Challenge</h2>
+    <ul class="engagement-list">
+        <li><a href="#" class="btn">Take the "Travel 50 km this month" Challenge</a></li>
+        <li><a href="#" class="btn">Join the "Submit Traffic Reports" Contest</a></li>
+    </ul>
+
+    <!-- Section: Social Sharing -->
+    <h2>Share Your Achievements</h2>
+    <ul class="social-buttons">
+        <li><a href="https://www.facebook.com/sharer/sharer.php?u=YOUR_SHARE_URL" target="_blank" class="btn">Share on Facebook</a></li>
+        <li><a href="https://twitter.com/intent/tweet?text=YOUR_TWEET_TEXT&url=YOUR_SHARE_URL" target="_blank" class="btn">Share on Twitter</a></li>
+    </ul>
+
+    <!-- Manual Sharing for Users who Don't Connect Social Media -->
+    <div class="privacy-consent" id="privacy-consent">
+        <p>Would you like to connect your social media accounts to share your achievements automatically? You can also manually share by copying the link or downloading your certificate.</p>
+        <button onclick="enableSocialSharing()">Yes, Connect My Account</button>
+        <button onclick="dismissConsent()">No, thanks</button>
+    </div>
+
+    <!-- Manual Sharing: Copy Link or Download Achievement -->
+    <div class="manual-sharing">
+        <h3>Manual Sharing</h3>
+        <button class="btn" onclick="copyToClipboard()">Copy Link to Achievement</button><br><br>
+        <a href="achievement_certificate.png" download class="btn">Download Achievement Certificate</a>
+    </div>
+</div>
+
+<!-- Script: Functions for Social Sharing, Privacy Consent, and Manual Sharing -->
+<script>
+    function enableSocialSharing() {
+        document.getElementById("privacy-consent").style.display = "none";
+        // Enable sharing options, such as opening a social media connection
+        alert("Social media accounts connected!");
+    }
+
+    function dismissConsent() {
+        document.getElementById("privacy-consent").style.display = "none";
+        // Show manual sharing options when user dismisses social media connection
+        alert("You can still share your achievement manually.");
+    }
+
+    function copyToClipboard() {
+        const achievementUrl = "https://yourapp.com/achievements/user123";  // Replace with dynamic URL
+        navigator.clipboard.writeText(achievementUrl).then(function() {
+            alert("Achievement link copied to clipboard!");
+        }, function(err) {
+            console.error("Error copying text: ", err);
+        });
+    }
+
+    // Display privacy consent prompt if user hasn't connected social media accounts
+    window.onload = function() {
+        document.getElementById("privacy-consent").style.display = "block";
+    };
+</script>
+
+</body>
+</html>
